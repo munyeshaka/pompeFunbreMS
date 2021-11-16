@@ -32,7 +32,7 @@ class Signup (View):
         error_message = self.validateCustomer (customer)
 
         if not error_message:
-            print (first_name, last_name, phone, email, password)
+            print (first_name, last_name, phone, password)
             customer.password = make_password (customer.password)
             customer.register ()
             return redirect ('homepage')
@@ -46,23 +46,23 @@ class Signup (View):
     def validateCustomer(self, customer):
         error_message = None
         if (not customer.first_name):
-            error_message = "Please Enter your First Name !!"
+            error_message = "Entrer le nom du client svp !!"
         elif len (customer.first_name) < 3:
-            error_message = 'First Name must be 3 char long or more'
+            error_message = 'Le nom doit avoir aumoins 3 lettres'
         elif not customer.last_name:
-            error_message = 'Please Enter your Last Name'
+            error_message = 'Entrer le Prenom du client svp !!'
         elif len (customer.last_name) < 3:
-            error_message = 'Last Name must be 3 char long or more'
+            error_message = 'Le prenom doit avoir aumoins 3 lettres'
         elif not customer.phone:
-            error_message = 'Enter your Phone Number'
-        elif len (customer.phone) < 10:
-            error_message = 'Phone Number must be 10 char Long'
-        elif len (customer.password) < 5:
-            error_message = 'Password must be 5 char long'
-        elif len (customer.email) < 5:
-            error_message = 'Email must be 5 char long'
+            error_message = 'Entrer le numero de telephone du client'
+        elif len (customer.phone) < 8:
+            error_message = 'Le numero du telephone doit avoir 8 chiffres !!'
+        elif len (customer.password) < 3:
+            error_message = 'Le mot de passe doit avoir 3 elements'
+        elif len (customer.email) < 3:
+            error_message = 'Le mot de passe doit avoir 3 elements'
         elif customer.isExists ():
-            error_message = 'Email Address Already Registered..'
+            error_message = 'Email est deja enreigistre !!'
         # saving
 
         return error_message

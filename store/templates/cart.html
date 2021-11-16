@@ -11,11 +11,11 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Sno.</th>
+                    <th>#</th>
                     <th>Image</th>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
+                    <th>Produit</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
                     <th>Total</th>
                 </tr>
             </thead>
@@ -26,9 +26,9 @@
                     <td>{{forloop.counter}}</td>
                     <td><img style="height: 80px;" class="rounded-circle" src="{{product.image.url}}" alt=""></td>
                     <td>{{product.name}}</td>
-                    <td>{{product.price|currency}}</td>
+                    <td>{{product.price}} Bif</td>
                     <td>{{product|cart_quantity:request.session.cart}}</td>
-                    <td>{{product|price_total:request.session.cart|currency}}</td>
+                    <td>{{product|price_total:request.session.cart}} Bif</td>
                 </tr>
 
                 {% endfor %}
@@ -39,13 +39,13 @@
                 <tr>
                     <th colspan="4"></th>
                     <th class="" colspan="">Total</th>
-                    <th>{{products|total_cart_price:request.session.cart|currency}}</th>
+                    <th>{{products|total_cart_price:request.session.cart}} Bif</th>
                 </tr>
             </tfoot>
         </table>
         <hr>
         <div class="m-3 p-3">
-            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-success border rounded  col-lg-3 float-right">Check out</a>
+            <a href="/store" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-success border rounded  col-lg-3 float-right">Check out</a>
         </div>
    </div>
 </div>
@@ -59,7 +59,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">
-              Check Out Form
+              Formulaire de commande
           </h5>
           <hr>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -70,17 +70,38 @@
           <div class="m-2 p-3">
             <form action="/check-out" method="POST">
                 {% csrf_token %}
+                
                 <div class="form-group">
-                  <label for="">Address</label>
-                  <input type="text" name="address" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  <label for="">Feu</label>
+                  <input type="text" name="feu" id="" class="form-control" placeholder="" aria-describedby="helpId">
                   
                 </div>
                 <div class="form-group">
-                    <label for="">Phone</label>
-                    <input type="text" name="phone" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  <label for="">Né(é)</label>
+                  <input type="date" name="ne" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  
+                </div>
+                <div class="form-group">
+                  <label for="">Décédé</label>
+                  <input type="date" name="decede" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  
+                </div>
+                <div class="form-group">
+                  <label for="">Date du funairale</label>
+                  <input type="date" name="date" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  
+                </div>
+                <div class="form-group">
+                  <label for="">Morgue</label>
+                  <input type="text" name="morgue" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  
+                </div>
+                <div class="form-group">
+                    <label for="">Avance</label>
+                    <input type="text" name="avance" id="" class="form-control" placeholder="" aria-describedby="helpId">
                   </div>
 
-                  <input type="submit" class="btn float-right btn-outline-success col-lg-6" value="Check out">
+                  <input type="submit" class="btn float-right btn-outline-success col-lg-6" value="Commander">
             </form>
           </div>
         </div>
